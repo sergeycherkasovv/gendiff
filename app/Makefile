@@ -6,6 +6,7 @@ build:
 	./gradlew clean install
 	./gradlew test
 	./gradlew jacocoTestReport
+report:
 	./gradlew checkstyleMain
 
 .PHONY: build
