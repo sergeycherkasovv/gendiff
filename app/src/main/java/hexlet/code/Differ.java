@@ -1,12 +1,16 @@
 package hexlet.code;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Differ {
     private static final String MINUS = "-";
     private static final String PLUS = "+";
 
-    public static String generate(Map<String, Object> filePath1, Map<String, Object> filePath2, String formatName) throws Exception {
+    public static String generate(Map<String, Object> filePath1,
+                                  Map<String, Object> filePath2,
+                                  String formatName) throws Exception {
         List<String> result = new ArrayList<>();
 
         List<String> listKey = new ArrayList<>(filePath1.keySet());
@@ -39,10 +43,10 @@ public class Differ {
         var result = new StringBuilder();
 
         result.append("{");
-        for (var item : list) {
-                result.append("\n");
-                result.append("  " + item);
-            }
+        list.forEach(item -> {
+            result.append("\n");
+            result.append("  " + item);
+        });
         result.append("\n");
         result.append("}");
 
