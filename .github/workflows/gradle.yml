@@ -36,8 +36,6 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
     - run: make build
-    - name: Setup Java JDK
-      uses: actions/setup-java@v4.5.0
     - name: Gradle Build Action
       uses: gradle/gradle-build-action@v3.5.0
     - name: Publish code coverage
