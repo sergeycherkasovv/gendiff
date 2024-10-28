@@ -4,7 +4,6 @@ run-dist:
 build:
 	./gradlew clean build
 	./gradlew clean install
-	./gradlew build
 	./gradlew test
 	./gradlew jacocoTestReport
 	./gradlew checkstyleMain
