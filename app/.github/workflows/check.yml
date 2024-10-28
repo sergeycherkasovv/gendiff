@@ -19,6 +19,10 @@ jobs:
           gradle-version: 8.7
       - run: ./gradlew checkstyleMain
       - run: ./gradlew test
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.5.0
+      - name: Gradle Build Action
+        uses: gradle/gradle-build-action@v3.5.0
       # - name: Publish code coverage
       #   uses: paambaati/codeclimate-action@v9.0.0
       #   env:
