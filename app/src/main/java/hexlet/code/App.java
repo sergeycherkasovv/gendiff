@@ -22,16 +22,14 @@ public class App implements Callable<String> {
 
     @Override
     public String call() throws Exception {
-        var fileRead1 = ReadFile.readFilePath(filepath1);
-        var fileRead2 = ReadFile.readFilePath(filepath2);
-        var fileInMap1 = FileInMap.objectMapper(fileRead1);
-        var fileInMap2 = FileInMap.objectMapper(fileRead2);
+        var fileParse1 = Parser.run(filepath1);
+        var fileParse2 = Parser.run(filepath2);
 
-        if (fileInMap1.isEmpty() || fileInMap2.isEmpty()) {
+        if (fileParse1.isEmpty() || fileParse2.isEmpty()) {
             throw new Exception();
         }
 
-        var result = Differ.generate(fileInMap1, fileInMap2, format);
+        var result = Differ.generate(fileParse1, fileParse2, format);
         System.out.println(result);
         return result;
     }
