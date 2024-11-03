@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class ReadFile {
     private static Path filePath(String fileName) throws Exception {
-        Path path = Paths.get("src", "main", "java", "hexlet", "code", "files", fileName)
+        Path path = Paths.get("src", "test", "resources", "fixtures", fileName)
                 .toAbsolutePath().normalize();
 
         if (!Files.exists(path)) {

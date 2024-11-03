@@ -22,14 +22,7 @@ public class App implements Callable<String> {
 
     @Override
     public String call() throws Exception {
-        var fileParse1 = Parser.run(filepath1);
-        var fileParse2 = Parser.run(filepath2);
-
-        if (fileParse1.isEmpty() || fileParse2.isEmpty()) {
-            throw new Exception();
-        }
-
-        var result = Differ.generate(fileParse1, fileParse2, format);
+        var result = DifferNew.generate(filepath1, filepath2, format);
         System.out.println(result);
         return result;
     }

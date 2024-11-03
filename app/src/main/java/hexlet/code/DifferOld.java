@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Differ {
+public class DifferOld {
     private static final String MINUS = "-";
     private static final String PLUS = "+";
 
