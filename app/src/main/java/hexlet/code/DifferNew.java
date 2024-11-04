@@ -1,9 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.formatter.Stylish;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class DifferNew {
     private static final String MINUS = "-";
@@ -19,26 +16,25 @@ public class DifferNew {
             throw new Exception();
         }
 
-        var result = generateConstuctor(fileParse1, fileParse2);
-        return Stylish.stylish(result);
+        var result = differFilter(fileParse1, fileParse2);
+        return Formatter.formatter(result, formatName);
     }
 
     public static String generate(String filepath1,
                                   String filepath2) throws Exception {
-        return generate(filepath1, filepath2, "String formatName");
+        return generate(filepath1, filepath2, "stylish");
     }
 
 
-    public static Map<String, Map<String, Object>> generateConstuctor(Map<String, Object> filePath1,
-                                                                       Map<String, Object> filePath2) {
-        Map<String, Map<String, Object>> result = new HashMap<>();
+    public static Map<String, Map<String, Object>> differFilter(Map<String, Object> filePath1,
+                                                                Map<String, Object> filePath2) {
+        Map<String, Map<String, Object>> result = new TreeMap<>();
 
         List<String> listKey = new ArrayList<>(filePath1.keySet());
         listKey.addAll(filePath2.keySet());
 
         listKey.stream()
                 .distinct()
-                .sorted()
                 .forEach(key -> {
                     Map<String, Object> map = new HashMap<>();
                     if (filePath1.containsValue(filePath2.get(key)) && filePath2.containsValue(filePath1.get(key))){

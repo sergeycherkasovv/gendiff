@@ -7,17 +7,17 @@ import java.util.Map;
 public class Stylish {
     private static final String MINUS = "-";
     private static final String PLUS = "+";
-    public static String stylish(Map<String, Map<String, Object>> list) {
+    public static String getStylish(Map<String, Map<String, Object>> list) {
         List<String> result = new ArrayList<>();
 
         result.add("{");
         list.forEach((key, value) -> {
-            if(value.containsKey("-") && !value.containsKey("+")) {
+            if (value.containsKey("+") && value.containsKey("-")) {
                 result.add(MINUS + "  " + key + ": " + value.get("-"));
-            } else if (value.containsKey("+") && !value.containsKey("-")) {
                 result.add(PLUS + "  " + key + ": " + value.get("+"));
-            } else if (value.containsKey("+") && value.containsKey("-")) {
+            } else if(value.containsKey("-")) {
                 result.add(MINUS + "  " + key + ": " + value.get("-"));
+            } else if (value.containsKey("+")) {
                 result.add(PLUS + "  " + key + ": " + value.get("+"));
             }  else {
                 result.add("   " + key + ": " + value.get(" "));

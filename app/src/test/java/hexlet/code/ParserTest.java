@@ -25,7 +25,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"empty.json", "emptyYaml.yml"})
+    @ValueSource(strings = {"empty.json", "empty.yml"})
     void runTest(String file) throws Exception {
         var output = Parser.run(file);
 
@@ -34,7 +34,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"file1.json", "file1Yaml.yml"})
+    @ValueSource(strings = {"file1.json", "file1.yml"})
     void runTest2(String file) throws Exception {
         var actual = fileExpecteds;
         var output = Parser.run(file);
@@ -44,7 +44,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"file1.json", "file1Yaml.yml"})
+    @ValueSource(strings = {"file1.json", "file1.yml"})
     void runTest3(String file) throws Exception {
         var output = Parser.run(file);
 
