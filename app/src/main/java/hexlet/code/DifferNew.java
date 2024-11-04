@@ -7,8 +7,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class DifferNew {
-    private static final String MINUS = "-";
-    private static final String PLUS = "+";
+    private static final String OLD = "old";
+    private static final String NEW = "new";
+    private static final String INTACT = "intact";
 
     public static String generate(String filepath1,
                                   String filepath2,
@@ -44,20 +45,24 @@ public class DifferNew {
                 .forEach(key -> {
                     Map<String, Object> map = new HashMap<>();
                     if (filePath1.containsValue(filePath2.get(key)) && filePath2.containsValue(filePath1.get(key))) {
-                        map.put(" ", filePath1.get(key));
+                        map.put(INTACT, filePath2.get(key));
                         result.put(key, map);
                     } else if (filePath1.containsKey(key) && filePath2.containsKey(key)) {
-                        map.put(MINUS, filePath1.get(key));
-                        map.put(PLUS, filePath2.get(key));
+                        map.put(OLD, filePath1.get(key));
+                        map.put(NEW, filePath2.get(key));
                         result.put(key, map);
                     } else if (filePath1.containsKey(key)) {
-                        map.put(MINUS, filePath1.get(key));
+                        map.put(OLD, filePath1.get(key));
                         result.put(key, map);
                     } else if (filePath2.containsKey(key)) {
-                        map.put(PLUS, filePath2.get(key));
+                        map.put(NEW, filePath2.get(key));
                         result.put(key, map);
+                    } else {
+                        //map.put(" ", filePath1.get(key));
+                        //result.put(key, map);
                     }
                 });
+        System.out.println(result);
         return result;
     }
 }
