@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import hexlet.code.formatter.Json;
-import hexlet.code.formatter.Plain;
 import hexlet.code.formatter.Stylish;
 
 import java.util.Map;

@@ -1,6 +1,10 @@
 package hexlet.code;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class DifferNew {
     private static final String MINUS = "-";
@@ -12,8 +16,10 @@ public class DifferNew {
         var fileParse1 = Parser.run(filepath1);
         var fileParse2 = Parser.run(filepath2);
 
-        if (fileParse1.isEmpty() || fileParse2.isEmpty()) {
-            throw new Exception();
+        if (fileParse1.isEmpty()) {
+            throw new Exception("The file " + "'" + filepath1 + "'" + " is empty");
+        } else if (fileParse2.isEmpty()) {
+            throw new Exception("The file " + "'" + filepath2 + "'" + " is empty");
         }
 
         var result = differFilter(fileParse1, fileParse2);
@@ -37,7 +43,7 @@ public class DifferNew {
                 .distinct()
                 .forEach(key -> {
                     Map<String, Object> map = new HashMap<>();
-                    if (filePath1.containsValue(filePath2.get(key)) && filePath2.containsValue(filePath1.get(key))){
+                    if (filePath1.containsValue(filePath2.get(key)) && filePath2.containsValue(filePath1.get(key))) {
                         map.put(" ", filePath1.get(key));
                         result.put(key, map);
                     } else if (filePath1.containsKey(key) && filePath2.containsKey(key)) {

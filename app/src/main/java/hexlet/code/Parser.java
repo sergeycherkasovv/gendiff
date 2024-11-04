@@ -13,14 +13,14 @@ public class Parser {
         return switch (fileName.substring(fileName.lastIndexOf("."))) {
             case ".json" -> getParse(read, new ObjectMapper());
             case ".yml", ".yaml" -> getParse(read, new YAMLMapper());
-            default ->
-                    throw new Exception("Unexpected value: "
-                            + fileName.substring(fileName.lastIndexOf(".")));
+            default -> throw new Exception("Unexpected value: "
+                    + fileName.substring(fileName.lastIndexOf(".")));
         };
     }
+
     public static Map<String, Object> getParse(String fileName, ObjectMapper mapper) throws Exception {
         return mapper.readValue(fileName,
                 new TypeReference<Map<String, Object>>() {
-        });
+                });
     }
 }
