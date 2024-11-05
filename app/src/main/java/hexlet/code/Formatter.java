@@ -7,7 +7,7 @@ import hexlet.code.formatter.Stylish;
 import java.util.Map;
 
 public class Formatter {
-    public static String formatter(Map<String, Map<String, Object>> differMap, String format) throws Exception {
+    public static String getFormatter(Map<String, Map<String, Object>> differMap, String format) throws Exception {
         return switch (format) {
             case "stylish" -> Stylish.getStylish(differMap);
             case "plain" -> Plain.getPlain(differMap);
