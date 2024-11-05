@@ -23,8 +23,6 @@ public class Plain {
                 result.add("Property '" + key + "' was removed");
             } else if (value.containsKey(NEW)) {
                 result.add("Property '" + key + "' was added with value: " + filters(value.get(NEW)));
-            } else {
-                //result.add("   " + key + ": " + value.get(" "));
             }
         });
         result.add("}");
