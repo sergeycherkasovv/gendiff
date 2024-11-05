@@ -22,7 +22,7 @@ public class App implements Callable<String> {
 
     @Override
     public String call() throws Exception {
-        var result = DifferNew.generate(filepath1, filepath2, format);
+        var result = Differ.generate(filepath1, filepath2, format);
         System.out.println(result);
         return result;
     }
