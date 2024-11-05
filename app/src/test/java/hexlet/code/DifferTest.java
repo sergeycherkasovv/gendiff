@@ -1,84 +1,81 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.BeforeEach;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DifferTest {
-    private static String fileExpectedsStylish;
-    private static String getFileExpectedsPlain;
-    private static String getFileExpectedsJson;
+    private static String directory;
 
-    @BeforeEach
-    public void beforeEachstylish() {
-        List<String> result = new ArrayList<>();
-        result.addAll(List.of("{",
-                "-  follow: false",
-                "   host: hexlet.io",
-                "-  proxy: 123.234.53.22",
-                "-  timeout: 50",
-                "+  timeout: 20",
-                "+  verbose: true",
-                "}"));
-        fileExpectedsStylish = String.join("\n", result);
+    @BeforeAll
+    public static void beforeAll() {
+        directory = "src/test/resources/fixtures/";
     }
-    @BeforeEach
-    public void beforeEachPlain() {
-        List<String> result = new ArrayList<>();
-        result.addAll(List.of("{",
-                "Property 'follow' was removed",
-                "Property 'proxy' was removed",
-                "Property 'timeout' was updated. From '50' to '20'",
-                "Property 'verbose' was added with value: true",
-                "}"));
-        getFileExpectedsPlain = String.join("\n", result);
-    }
-    @BeforeEach
-    public void beforeEachJson() {
-        List<String> result = new ArrayList<>();
-        result.addAll(List.of("{\"follow\":{\"old\":false},"
-                + "\"host\":{\"intact\":\"hexlet.io\"},"
-                + "\"proxy\":{\"old\":\"123.234.53.22\"},"
-                + "\"timeout\":{\"new\":20,\"old\":50},"
-                + "\"verbose\":{\"new\":true}}"));
-        getFileExpectedsJson = String.join("\n", result);
-    }
-
 
     @Test
     void testGenerateStylish() throws Exception {
-        var output1 = Differ.generate("file1.yml", "file2.yml", "stylish");
-        assertEquals(output1, fileExpectedsStylish);
+        var expected = ReadFileForTest.readFilePath("DifferStylish.txt");
 
-        var output2 = Differ.generate("file1.json", "file2.json", "stylish");
-        assertEquals(output2, fileExpectedsStylish);
+        var output1 = Differ.generate(directory + "file1.yml", directory + "file2.yml", "stylish");
+        assertEquals(output1, expected);
 
-        var output3 = Differ.generate("file1.yml", "file2.yml");
-        assertEquals(output3, fileExpectedsStylish);
+        var output2 = Differ.generate(directory + "file1.json", directory + "file2.json", "stylish");
+        assertEquals(output2, expected);
 
-        var output4 = Differ.generate("file1.json", "file2.json");
-        assertEquals(output4, fileExpectedsStylish);
+        var output3 = Differ.generate(directory + "file1.yml", directory + "file2.yml");
+        assertEquals(output3, expected);
+
+        var output4 = Differ.generate(directory + "file1.json", directory + "file2.json");
+        assertEquals(output4, expected);
+
+        var output5 = Differ.generate(directory + "file1.yml", directory + "file2.json");
+        assertEquals(output5, expected);
     }
 
     @Test
     void testGeneratePlain() throws Exception {
-        var output1 = Differ.generate("file1.yml", "file2.yml", "plain");
-        assertEquals(output1, getFileExpectedsPlain);
+        var expected = ReadFileForTest.readFilePath("DifferPlain.txt");
 
-        var output2 = Differ.generate("file1.json", "file2.json", "plain");
-        assertEquals(output2, getFileExpectedsPlain);
+        var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", "plain");
+        assertEquals(output1, expected);
+
+        var output2 = Differ.generate(directory + "file3.json", directory + "file4.json", "plain");
+        assertEquals(output2, expected);
+
+        var output3 = Differ.generate(directory + "file3.yml", directory + "file4.json", "plain");
+        assertEquals(output3, expected);
     }
 
     @Test
     void testGenerateJson() throws Exception {
-        var output1 = Differ.generate("file1.yml", "file2.yml", "json");
-        assertEquals(output1, getFileExpectedsJson);
+        var expected = ReadFileForTest.readFilePath("DifferJson.txt");
 
-        var output2 = Differ.generate("file1.json", "file2.json", "json");
-        assertEquals(output2, getFileExpectedsJson);
+        var output1 = Differ.generate("file3.yml", "file4.yml", "json");
+        assertEquals(output1, expected);
+
+        var output2 = Differ.generate("file3.json", "file4.json", "json");
+        assertEquals(output2, expected);
+    }
+
+    @Test
+    void testGenerateThrows() throws Exception {
+        Exception exception = assertThrows(Exception.class, () -> {
+            Differ.generate(directory + "empty.json", directory + "file2.json");
+        }, "The file " + "'empty.json'" + " is empty");
+
+        Exception exception1 = assertThrows(Exception.class, () -> {
+            Differ.generate(directory + "file1.json", directory + "empty.yml");
+        }, "The file " + "'empty.yml'" + " is empty");
+
+        Exception exception2 = assertThrows(Exception.class, () -> {
+            Differ.generate(directory + "file.json", directory + "file2.yml");
+        }, "File 'file.json' does not exist");
+
+        Exception exception3 = assertThrows(Exception.class, () -> {
+            Differ.generate(directory + "file1.json", directory + "file2.yml", "incorrect");
+        }, "Unexpected value: " + "incorrect");
     }
 }
