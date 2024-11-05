@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class DifferNew {
+public class Differ {
     private static final String OLD = "old";
     private static final String NEW = "new";
     private static final String INTACT = "intact";
@@ -57,9 +57,6 @@ public class DifferNew {
                     } else if (filePath2.containsKey(key)) {
                         map.put(NEW, filePath2.get(key));
                         result.put(key, map);
-                    } else {
-                        //map.put(" ", filePath1.get(key));
-                        //result.put(key, map);
                     }
                 });
         System.out.println(result);
