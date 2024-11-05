@@ -6,8 +6,15 @@ import java.nio.file.Paths;
 
 public class ReadFile {
     private static Path filePath(String fileName) throws Exception {
-        Path path = Paths.get("src", "main", "resources", "files", fileName)
-                .toAbsolutePath().normalize();
+        Path path;
+        if(fileName.contains("test/")) {
+            path = Paths.get(fileName)
+                    .toAbsolutePath().normalize();
+        } else {
+            path = Paths.get("src", "main", "resources", fileName)
+                    .toAbsolutePath().normalize();
+        }
+
 
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
