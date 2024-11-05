@@ -1,13 +1,12 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DifferTest {
     private static String fileExpectedsStylish;
@@ -41,11 +40,11 @@ class DifferTest {
     @BeforeEach
     public void beforeEachJson() {
         List<String> result = new ArrayList<>();
-        result.addAll(List.of("{\"follow\":{\"old\":false}," +
-                "\"host\":{\"intact\":\"hexlet.io\"}," +
-                "\"proxy\":{\"old\":\"123.234.53.22\"}," +
-                "\"timeout\":{\"new\":20,\"old\":50}," +
-                "\"verbose\":{\"new\":true}}"));
+        result.addAll(List.of("{\"follow\":{\"old\":false},"
+                + "\"host\":{\"intact\":\"hexlet.io\"},"
+                + "\"proxy\":{\"old\":\"123.234.53.22\"},"
+                + "\"timeout\":{\"new\":20,\"old\":50},"
+                + "\"verbose\":{\"new\":true}}"));
         getFileExpectedsJson = String.join("\n", result);
     }
 
