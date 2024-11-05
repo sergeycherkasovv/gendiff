@@ -14,8 +14,8 @@ public class Differ {
     public static String generate(String filepath1,
                                   String filepath2,
                                   String formatName) throws Exception {
-        var fileParse1 = Parser.run(filepath1);
-        var fileParse2 = Parser.run(filepath2);
+        var fileParse1 = Parser.getParser(filepath1);
+        var fileParse2 = Parser.getParser(filepath2);
 
         if (fileParse1.isEmpty()) {
             throw new Exception("The file " + "'" + filepath1 + "'" + " is empty");
@@ -24,7 +24,7 @@ public class Differ {
         }
 
         var result = differFilter(fileParse1, fileParse2);
-        return Formatter.formatter(result, formatName);
+        return Formatter.getFormatter(result, formatName);
     }
 
     public static String generate(String filepath1,
@@ -59,7 +59,6 @@ public class Differ {
                         result.put(key, map);
                     }
                 });
-        System.out.println(result);
         return result;
     }
 }
