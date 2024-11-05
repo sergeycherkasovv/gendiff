@@ -4,3 +4,12 @@
 
 ## STEP 6
 ### [Comparison of flat files (JSON)](https://asciinema.org/a/yMr990f3pQIlCHG5mN63C2Clm)
+
+## STEP 9
+### [Format "stylish"](https://asciinema.org/a/bidOiZq62iRAg43GSTILOJcOa)
+
+## STEP 10
+### [Format "plain"](https://asciinema.org/a/cMFGIHDG6P5kK0Z676eJ8FKBQ)
+
+## STEP 11
+### [Format "json"](https://asciinema.org/a/24y3L9FNyeuUuRNlSWIyb0mrk)
