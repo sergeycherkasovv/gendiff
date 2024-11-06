@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ParserTest {
+class ParserTest  {
     private static Map<String, Object> fileExpecteds = new HashMap<>();
 
     @BeforeAll
@@ -24,7 +24,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"empty.json", "empty.yml"})
+    @ValueSource(strings = {"src/test/resources/fixtures/empty.json", "src/test/resources/fixtures/empty.yml"})
     void getParserTest(String file) throws Exception {
         var output = Parser.getParser(file);
 
@@ -33,7 +33,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"file1.json", "file1.yml"})
+    @ValueSource(strings = {"src/test/resources/fixtures/file1.json", "src/test/resources/fixtures/file1.yml"})
     void getParserTest2(String file) throws Exception {
         var actual = fileExpecteds;
         var output = Parser.getParser(file);
@@ -43,7 +43,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"file1.json", "file1.yml"})
+    @ValueSource(strings = {"src/test/resources/fixtures/file1.json", "src/test/resources/fixtures/file1.yml"})
     void getParserTest3(String file) throws Exception {
         var output = Parser.getParser(file);
 

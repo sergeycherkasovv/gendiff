@@ -53,10 +53,10 @@ class DifferTest {
     void testGenerateJson() throws Exception {
         var expected = ReadFileForTest.readFilePath("DifferJson.txt");
 
-        var output1 = Differ.generate("file3.yml", "file4.yml", "json");
+        var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", "json");
         assertEquals(output1, expected);
 
-        var output2 = Differ.generate("file3.json", "file4.json", "json");
+        var output2 = Differ.generate(directory + "file3.json", directory + "file4.json", "json");
         assertEquals(output2, expected);
     }
 
