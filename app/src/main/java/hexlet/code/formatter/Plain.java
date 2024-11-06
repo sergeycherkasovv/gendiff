@@ -11,7 +11,6 @@ public class Plain {
     public static String getPlain(Map<String, Map<String, Object>> list) {
         List<String> result = new ArrayList<>();
 
-        result.add("{");
         list.forEach((key, value) -> {
             if (value.containsKey(NEW) && value.containsKey(OLD)) {
                 result.add("Property '"
@@ -25,7 +24,6 @@ public class Plain {
                 result.add("Property '" + key + "' was added with value: " + filters(value.get(NEW)));
             }
         });
-        result.add("}");
 
         return String.join("\n", result);
     }

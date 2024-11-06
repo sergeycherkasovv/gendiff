@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static java.util.Arrays.compare;
+
 public class Differ {
     private static final String OLD = "old";
     private static final String NEW = "new";
@@ -42,12 +44,13 @@ public class Differ {
 
         listKey.stream()
                 .distinct()
+                .sorted()
                 .forEach(key -> {
                     Map<String, Object> map = new HashMap<>();
                     if (filePath1.containsValue(filePath2.get(key)) && filePath2.containsValue(filePath1.get(key))) {
                         map.put(INTACT, filePath2.get(key));
                         result.put(key, map);
-                    } else if (filePath1.containsKey(key) && filePath2.containsKey(key)) {
+                    }  else if (filePath1.containsKey(key) && filePath2.containsKey(key)) {
                         map.put(OLD, filePath1.get(key));
                         map.put(NEW, filePath2.get(key));
                         result.put(key, map);
@@ -60,5 +63,12 @@ public class Differ {
                     }
                 });
         return result;
+    }
+
+    public static boolean f(Object c, Object b) {
+        if (c instanceof Boolean && b instanceof Boolean) {
+            return c.equals(b);
+        }
+        return false;
     }
 }
