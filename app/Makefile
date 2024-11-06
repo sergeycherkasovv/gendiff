@@ -6,6 +6,8 @@ build:
 	./gradlew test
 	./gradlew jacocoTestReport
 report:
+	./gradlew jacocoTestReport
+lint:
 	./gradlew checkstyleMain
 run-install:
 	./gradlew clean install
