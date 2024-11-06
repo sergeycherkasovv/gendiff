@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 public class ReadFile {
     private static Path filePath(String fileName) throws Exception {
         Path path;
-        if (fileName.contains("test/")) {
+        if (fileName.contains("/")) {
             path = Paths.get(fileName)
                     .toAbsolutePath().normalize();
         } else {
