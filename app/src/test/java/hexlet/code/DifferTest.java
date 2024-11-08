@@ -23,7 +23,7 @@ class DifferTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {".json", ".yml",})
+    @ValueSource(strings = {".json", ".yml"})
     void testGenerate(String format) throws Exception {
         var file1 = directory + "file1" + format;
         var file2 = directory + "file2" + format;
