@@ -10,6 +10,7 @@ test:
 	./gradlew test
 report:
 	./gradlew jacocoTestReport
+	reports { xml.required.set(true) }
 lint:
 	./gradlew checkstyleMain
 run-h:
