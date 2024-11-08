@@ -38,6 +38,6 @@ class DifferTest {
         assertEquals(plainFormatter, expectedPlain);
 
         var jsonFormatter = Differ.generate(file1, file2, "json");
-        assertEquals(jsonFormatter,expectedJson);
+        assertEquals(jsonFormatter, expectedJson);
     }
 }
