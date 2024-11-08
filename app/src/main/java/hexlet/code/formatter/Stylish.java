@@ -5,11 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Stylish {
-    private static final String MINUS = "-";
-    private static final String PLUS = "+";
     private static final String OLD = "old";
     private static final String NEW = "new";
     private static final String UNCHANGED = "unchanged";
+
     private static final Integer COUNT_EMPTY_LINE = 2;
 
     public static String getStylish(Map<String, Map<String, Object>> list) {
@@ -18,8 +17,8 @@ public class Stylish {
 
         result.add("{");
         list.forEach((key, value) -> {
-            var plus = emptyString + PLUS + " " + key + ": " + value.get(NEW);
-            var minus = emptyString + MINUS + " " + key + ": " + value.get(OLD);
+            var plus = emptyString + "+ " + key + ": " + value.get(NEW);
+            var minus = emptyString + "- " + key + ": " + value.get(OLD);
 
             if (value.containsKey(NEW) && value.containsKey(OLD)) {
                 result.add(minus);
@@ -29,7 +28,7 @@ public class Stylish {
             } else if (value.containsKey(NEW)) {
                 result.add(plus);
             } else if (value.containsKey(UNCHANGED)) {
-                result.add(emptyString + emptyString + key + ": " + value.get(UNCHANGED));
+                result.add(emptyString.repeat(COUNT_EMPTY_LINE) + key + ": " + value.get(UNCHANGED));
             }
 
         });
