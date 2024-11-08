@@ -2,64 +2,42 @@ package hexlet.code;
 
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DifferTest {
     private static String directory;
+    private static String expectedStylish;
+    private static String expectedPlain;
+    private static String expectedJson;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws Exception {
+
         directory = "src/test/resources/fixtures/";
+        expectedStylish = ReadFile.readFilePath(directory + "resultStylish.txt");
+        expectedPlain = ReadFile.readFilePath(directory + "resultPlain.txt");
+        expectedJson = ReadFile.readFilePath(directory + "resultJson.txt");
     }
 
-    @Test
-    void testGenerateStylish() throws Exception {
-        var expected = ReadFileForTest.readFilePath("resultStylish.txt");
-        var format = "stylish";
+    @ParameterizedTest
+    @ValueSource(strings = {".json", ".yml",})
+    void testGenerate(String format) throws Exception {
+        var file1 = directory + "file1" + format;
+        var file2 = directory + "file2" + format;
 
-        var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", format);
-        assertEquals(output1, expected);
+        var notFormatter = Differ.generate(file1, file2);
+        assertEquals(notFormatter, expectedStylish);
 
-        var output2 = Differ.generate(directory + "file3.json", directory + "file4.json", format);
-        assertEquals(output2, expected);
+        var stylishFormatter = Differ.generate(file1, file2, "stylish");
+        assertEquals(stylishFormatter, expectedStylish);
 
-        var output3 = Differ.generate(directory + "file3.yml", directory + "file4.yml");
-        assertEquals(output3, expected);
+        var plainFormatter = Differ.generate(file1, file2, "plain");
+        assertEquals(plainFormatter, expectedPlain);
 
-        var output4 = Differ.generate(directory + "file3.json", directory + "file4.json");
-        assertEquals(output4, expected);
-
-        var output5 = Differ.generate(directory + "file3.yml", directory + "file4.json");
-        assertEquals(output5, expected);
-    }
-
-    @Test
-    void testGeneratePlain() throws Exception {
-        var expected = ReadFileForTest.readFilePath("resultPlain.txt");
-        var format = "plain";
-
-        var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", format);
-        assertEquals(output1, expected);
-
-        var output2 = Differ.generate(directory + "file3.json", directory + "file4.json", format);
-        assertEquals(output2, expected);
-
-        var output3 = Differ.generate(directory + "file3.yml", directory + "file4.json", format);
-        assertEquals(output3, expected);
-    }
-
-    @Test
-    void testGenerateJson() throws Exception {
-        var expected = ReadFileForTest.readFilePath("resultJson.txt");
-        var format = "json";
-
-        var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", format);
-        assertEquals(output1, expected);
-
-        var output2 = Differ.generate(directory + "file3.json", directory + "file4.json", format);
-        assertEquals(output2, expected);
+        var jsonFormatter = Differ.generate(file1, file2, "json");
+        assertEquals(jsonFormatter,expectedJson);
     }
 }
