@@ -17,28 +17,28 @@ class DifferTest {
 
     @Test
     void testGenerateStylish() throws Exception {
-        var expected = ReadFileForTest.readFilePath("DifferStylish.txt");
+        var expected = ReadFileForTest.readFilePath("resultStylish.txt");
         var format = "stylish";
 
-        var output1 = Differ.generate(directory + "file1.yml", directory + "file2.yml", format);
+        var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", format);
         assertEquals(output1, expected);
 
-        var output2 = Differ.generate(directory + "file1.json", directory + "file2.json", format);
+        var output2 = Differ.generate(directory + "file3.json", directory + "file4.json", format);
         assertEquals(output2, expected);
 
-        var output3 = Differ.generate(directory + "file1.yml", directory + "file2.yml");
+        var output3 = Differ.generate(directory + "file3.yml", directory + "file4.yml");
         assertEquals(output3, expected);
 
-        var output4 = Differ.generate(directory + "file1.json", directory + "file2.json");
+        var output4 = Differ.generate(directory + "file3.json", directory + "file4.json");
         assertEquals(output4, expected);
 
-        var output5 = Differ.generate(directory + "file1.yml", directory + "file2.json");
+        var output5 = Differ.generate(directory + "file3.yml", directory + "file4.json");
         assertEquals(output5, expected);
     }
 
     @Test
     void testGeneratePlain() throws Exception {
-        var expected = ReadFileForTest.readFilePath("DifferPlain.txt");
+        var expected = ReadFileForTest.readFilePath("resultPlain.txt");
         var format = "plain";
 
         var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", format);
@@ -53,7 +53,7 @@ class DifferTest {
 
     @Test
     void testGenerateJson() throws Exception {
-        var expected = ReadFileForTest.readFilePath("DifferJson.txt");
+        var expected = ReadFileForTest.readFilePath("resultJson.txt");
         var format = "json";
 
         var output1 = Differ.generate(directory + "file3.yml", directory + "file4.yml", format);
