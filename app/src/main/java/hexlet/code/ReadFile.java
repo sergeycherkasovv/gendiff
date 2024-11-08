@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 public class ReadFile {
     private static Path filePath(String fileName) throws Exception {
         Path path;
+
         if (fileName.contains("/")) {
             path = Paths.get(fileName)
                     .toAbsolutePath().normalize();
@@ -15,10 +16,10 @@ public class ReadFile {
                     .toAbsolutePath().normalize();
         }
 
-
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }
+
         return path;
     }
 

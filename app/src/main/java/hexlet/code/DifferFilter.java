@@ -25,7 +25,6 @@ public class DifferFilter {
                 .forEach(key -> {
                     Map<String, Object> map = new HashMap<>();
                     if (Objects.equals(filePath1.get(key), filePath2.get(key))) {
-                        //filePath1.containsValue(filePath2.get(key)) && filePath2.containsValue(filePath1.get(key))
                         map.put(UNCHANGED, filePath2.get(key));
                         result.put(key, map);
                     } else if ((filePath1.containsKey(key) && filePath2.containsKey(key))) {
