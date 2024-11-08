@@ -18,8 +18,8 @@ public class Stylish {
 
         result.add("{");
         list.forEach((key, value) -> {
-            var plus = emptyString + PLUS + emptyString + key + ": " + value.get(NEW);
-            var minus = emptyString + MINUS + emptyString + key + ": " + value.get(OLD);
+            var plus = emptyString + PLUS + " " + key + ": " + value.get(NEW);
+            var minus = emptyString + MINUS + " " + key + ": " + value.get(OLD);
 
             if (value.containsKey(NEW) && value.containsKey(OLD)) {
                 result.add(minus);
@@ -29,7 +29,7 @@ public class Stylish {
             } else if (value.containsKey(NEW)) {
                 result.add(plus);
             } else if (value.containsKey(UNCHANGED)) {
-                result.add(emptyString + " " + emptyString + key + ": " + value.get(UNCHANGED));
+                result.add(emptyString + emptyString + key + ": " + value.get(UNCHANGED));
             }
 
         });
