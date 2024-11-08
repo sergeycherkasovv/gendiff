@@ -35,7 +35,9 @@ public class Plain {
             return "null";
         } else if (value instanceof Boolean) {
             return value.toString();
+        } else if (value instanceof String) {
+            return "'" + value + "'";
         }
-        return "'" + value.toString() + "'";
+        return value.toString();
     }
 }
