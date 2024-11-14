@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class Differ {
@@ -27,6 +25,5 @@ public class Differ {
         var read = ReadFile.readFilePath(file);
         var fileFormat = file.substring(file.lastIndexOf("."));
         return Parser.getParser(read, fileFormat);
-
     }
 }
