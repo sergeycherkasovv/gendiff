@@ -10,7 +10,7 @@ import java.util.Map;
 public class Stylish {
     private static final Integer COUNT_EMPTY_LINE = 2;
 
-    public static String getStylish(List<Map<String, Object>> list) {
+    public static String getStylish(List<Map<String, Object>> list) throws RuntimeException {
         List<String> result = new ArrayList<>();
         var emptyString = " ".repeat(COUNT_EMPTY_LINE);
 
