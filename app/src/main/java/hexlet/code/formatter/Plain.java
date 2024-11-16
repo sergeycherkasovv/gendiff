@@ -1,29 +1,34 @@
 package hexlet.code.formatter;
 
+import hexlet.code.DifferFilter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Plain {
-    private static final String OLD = "old";
-    private static final String NEW = "new";
-
-    public static String getPlain(Map<String, Map<String, Object>> list) {
+    public static String getPlain(List<Map<String, Object>> list) {
         List<String> result = new ArrayList<>();
 
-        list.forEach((key, value) -> {
-            if (value.containsKey(NEW) && value.containsKey(OLD)) {
-                result.add("Property '"
-                        + key
-                        + "' was updated."
-                        + " From " + filters(value.get(OLD))
-                        + " to " + filters(value.get(NEW)));
-            } else if (value.containsKey(OLD)) {
-                result.add("Property '" + key + "' was removed");
-            } else if (value.containsKey(NEW)) {
-                result.add("Property '" + key + "' was added with value: " + filters(value.get(NEW)));
+        for (Map<String, Object> map : list ) {
+            var status = map.get(DifferFilter.STATUS).toString();
+            var key = map.get(DifferFilter.KEY);
+
+            switch (status) {
+                case DifferFilter.DELETED -> result.add("Property '" + key + "' was removed");
+                case DifferFilter.NEW -> result.add("Property '"
+                                                    + key
+                                                    + "' was added with value: "
+                                                    + filters(map.get(DifferFilter.VALUE_SECOND)));
+                case DifferFilter.CHANGED -> result.add("Property '"
+                                                        + key
+                                                        + "' was updated."
+                                                        + " From " + filters(map.get(DifferFilter.VALUE_ONE))
+                                                        + " to " + filters(map.get(DifferFilter.VALUE_SECOND)));
+                case DifferFilter.SAME -> {}
+                default -> throw new RuntimeException("This status was not found");
             }
-        });
+        }
 
         return String.join("\n", result);
     }
