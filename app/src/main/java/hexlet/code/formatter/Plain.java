@@ -10,7 +10,7 @@ public class Plain {
     public static String getPlain(List<Map<String, Object>> list) {
         List<String> result = new ArrayList<>();
 
-        for (Map<String, Object> map : list ) {
+        for (Map<String, Object> map : list) {
             var status = map.get(DifferFilter.STATUS).toString();
             var key = map.get(DifferFilter.KEY);
 
@@ -25,7 +25,7 @@ public class Plain {
                                                         + "' was updated."
                                                         + " From " + filters(map.get(DifferFilter.VALUE_ONE))
                                                         + " to " + filters(map.get(DifferFilter.VALUE_SECOND)));
-                case DifferFilter.SAME -> {}
+                case DifferFilter.SAME -> { }
                 default -> throw new RuntimeException("This status was not found");
             }
         }
