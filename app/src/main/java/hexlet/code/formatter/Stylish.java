@@ -28,8 +28,10 @@ public class Stylish {
                 case DifferFilter.DELETED -> result.add(minus);
                 case DifferFilter.NEW -> result.add(plus);
                 case DifferFilter.SAME -> result.add(same);
-                case DifferFilter.CHANGED -> { result.add(minus);
-                                                result.add(plus); }
+                case DifferFilter.CHANGED -> {
+                    result.add(minus);
+                    result.add(plus);
+                }
                 default -> throw new RuntimeException("This status was not found");
             }
         }
