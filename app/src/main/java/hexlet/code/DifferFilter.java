@@ -5,41 +5,52 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.TreeMap;
 
 public class DifferFilter {
-    private static final String OLD = "old";
-    private static final String NEW = "new";
-    private static final String UNCHANGED = "unchanged";
+    public static final String STATUS = "status";
+    public static final String CHANGED = "changed";
+    public static final String NEW = "new";
+    public static final String SAME = "same";
+    public static final String DELETED = "deleted";
 
-    public static Map<String, Map<String, Object>> getDifferFilter(Map<String, Object> fileParse1,
-                                                                   Map<String, Object> fileParse2) {
+    public static final String KEY = "key";
+    public static final String VALUE_ONE = "valueOne";
+    public static final String VALUE_SECOND = "valueSecond";
 
-        Map<String, Map<String, Object>> result = new TreeMap<>();
 
-        List<String> listKey = new ArrayList<>(fileParse1.keySet());
+
+    public static List<Map<String, Object>> getDifferFilter(Map<String, Object> fileParse1,
+                                                            Map<String, Object> fileParse2) {
+
+        List<String> listKey = new ArrayList<>();
+        listKey.addAll(fileParse1.keySet());
         listKey.addAll(fileParse2.keySet());
 
-        listKey.stream()
+        return listKey.stream()
                 .distinct()
                 .sorted()
-                .forEach(key -> {
+                .map(key -> {
                     Map<String, Object> map = new HashMap<>();
                     if (Objects.equals(fileParse1.get(key), fileParse2.get(key))) {
-                        map.put(UNCHANGED, fileParse2.get(key));
-                        result.put(key, map);
+                        map.put(KEY, key);
+                        map.put(STATUS, SAME);
+                        map.put(VALUE_SECOND, fileParse2.get(key));
                     } else if ((fileParse1.containsKey(key) && fileParse2.containsKey(key))) {
-                        map.put(OLD, fileParse1.get(key));
-                        map.put(NEW, fileParse2.get(key));
-                        result.put(key, map);
-                    } else if (fileParse1.containsKey(key)) {
-                        map.put(OLD, fileParse1.get(key));
-                        result.put(key, map);
-                    } else if (fileParse2.containsKey(key)) {
-                        map.put(NEW, fileParse2.get(key));
-                        result.put(key, map);
+                        map.put(KEY, key);
+                        map.put(STATUS, CHANGED);
+                        map.put(VALUE_ONE, fileParse1.get(key));
+                        map.put(VALUE_SECOND, fileParse2.get(key));
+                    } else if (fileParse1.containsKey(key) && !fileParse2.containsKey(key)) {
+                        map.put(KEY, key);
+                        map.put(STATUS, DELETED);
+                        map.put(VALUE_ONE, fileParse1.get(key));
+                    } else if (fileParse2.containsKey(key) && !fileParse1.containsKey(key)) {
+                        map.put(KEY, key);
+                        map.put(STATUS, NEW);
+                        map.put(VALUE_SECOND, fileParse2.get(key));
                     }
-                });
-        return result;
+                    return map;
+                })
+                .toList();
     }
 }
