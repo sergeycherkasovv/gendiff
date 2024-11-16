@@ -16,10 +16,6 @@ public class ReadFile {
                     .toAbsolutePath().normalize();
         }
 
-        if (!Files.exists(path)) {
-            throw new Exception("File '" + path + "' does not exist");
-        }
-
         return path;
     }
 
