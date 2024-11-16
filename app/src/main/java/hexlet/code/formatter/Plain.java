@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Plain {
-    public static String getPlain(List<Map<String, Object>> list) {
+    public static String getPlain(List<Map<String, Object>> list) throws RuntimeException {
         List<String> result = new ArrayList<>();
 
         for (Map<String, Object> map : list) {
