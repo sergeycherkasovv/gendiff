@@ -15,18 +15,21 @@ public class Stylish {
         var emptyString = " ".repeat(COUNT_EMPTY_LINE);
 
         result.add("{");
-        for(Map<String, Object> map: list) {
+        for (Map<String, Object> map: list) {
+            var status = map.get(DifferFilter.STATUS).toString();
             var plus = emptyString + "+ " + map.get(DifferFilter.KEY) + ": " + map.get(DifferFilter.VALUE_SECOND);
             var minus = emptyString + "- " + map.get(DifferFilter.KEY) + ": " + map.get(DifferFilter.VALUE_ONE);
-            var same = emptyString.repeat(COUNT_EMPTY_LINE) + map.get(DifferFilter.KEY) + ": " + map.get(DifferFilter.VALUE_SECOND);
-            var status = map.get(DifferFilter.STATUS).toString();
+            var same = emptyString.repeat(COUNT_EMPTY_LINE)
+                    + map.get(DifferFilter.KEY)
+                    + ": "
+                    + map.get(DifferFilter.VALUE_SECOND);
 
             switch (status) {
                 case DifferFilter.DELETED -> result.add(minus);
                 case DifferFilter.NEW -> result.add(plus);
                 case DifferFilter.SAME -> result.add(same);
-                case DifferFilter.CHANGED -> {result.add(minus);
-                                                result.add(plus);}
+                case DifferFilter.CHANGED -> { result.add(minus);
+                                                result.add(plus); }
                 default -> throw new RuntimeException("This status was not found");
             }
         }
