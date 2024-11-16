@@ -32,21 +32,21 @@ public class DifferFilter {
                 .map(key -> {
                     Map<String, Object> map = new HashMap<>();
                     if (Objects.equals(fileParse1.get(key), fileParse2.get(key))) {
-                        map.put(KEY, key);
                         map.put(STATUS, SAME);
+                        map.put(KEY, key);
                         map.put(VALUE_SECOND, fileParse2.get(key));
                     } else if ((fileParse1.containsKey(key) && fileParse2.containsKey(key))) {
-                        map.put(KEY, key);
                         map.put(STATUS, CHANGED);
+                        map.put(KEY, key);
                         map.put(VALUE_ONE, fileParse1.get(key));
                         map.put(VALUE_SECOND, fileParse2.get(key));
                     } else if (fileParse1.containsKey(key) && !fileParse2.containsKey(key)) {
-                        map.put(KEY, key);
                         map.put(STATUS, DELETED);
+                        map.put(KEY, key);
                         map.put(VALUE_ONE, fileParse1.get(key));
                     } else if (fileParse2.containsKey(key) && !fileParse1.containsKey(key)) {
-                        map.put(KEY, key);
                         map.put(STATUS, NEW);
+                        map.put(KEY, key);
                         map.put(VALUE_SECOND, fileParse2.get(key));
                     }
                     return map;
