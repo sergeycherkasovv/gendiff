@@ -10,14 +10,15 @@ public class Parser {
     public static Map<String, Object> getParser(String fileRead, String fileFormat) throws Exception {
 
         return switch (fileFormat) {
-            case ".json" -> run(fileRead, new ObjectMapper());
-            case ".yml", ".yaml" -> run(fileRead, new YAMLMapper());
-            default -> throw new RuntimeException("Unexpected value: "
-                    + fileRead.substring(fileRead.lastIndexOf(".")));
+            case ".json" -> getMap(fileRead, new ObjectMapper());
+            case ".yml", ".yaml" -> getMap(fileRead, new YAMLMapper());
+            default -> {
+                throw new RuntimeException("Unexpected format: " + fileFormat);
+            }
         };
     }
 
-    public static Map<String, Object> run(String fileName, ObjectMapper mapper) throws Exception {
+    public static Map<String, Object> getMap(String fileName, ObjectMapper mapper) throws Exception {
         return mapper.readValue(fileName,
                 new TypeReference<Map<String, Object>>() {
                 });
