@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class DifferFilter {
+public class FileDifferences {
     public static final String STATUS = "status";
     public static final String CHANGED = "changed";
     public static final String NEW = "new";
@@ -19,8 +19,8 @@ public class DifferFilter {
 
 
 
-    public static List<Map<String, Object>> getDifferFilter(Map<String, Object> fileParse1,
-                                                            Map<String, Object> fileParse2) {
+    public static List<Map<String, Object>> getDifferences(Map<String, Object> fileParse1,
+                                                           Map<String, Object> fileParse2) {
 
         List<String> listKey = new ArrayList<>();
         listKey.addAll(fileParse1.keySet());
