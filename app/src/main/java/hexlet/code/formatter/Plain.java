@@ -27,7 +27,7 @@ public class Plain {
                                                         + " to "
                                                         + getConvertedValue(map.get(Keys.VALUE_SECOND)));
                 case Status.SAME -> { }
-                default -> throw new RuntimeException("This status was not found");
+                default -> throw new RuntimeException("This " + map.get(Status.STATUS) + " was not found");
             }
         }
 
