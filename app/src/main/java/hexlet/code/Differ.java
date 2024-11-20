@@ -20,7 +20,6 @@ public class Differ {
         return generate(filepath1, filepath2, "stylish");
     }
 
-
     public static Map<String, Object> getPreparedFile(String file) throws Exception {
         var read = FileRead.readFile(file);
         var fileFormat = file.substring(file.lastIndexOf("."));
