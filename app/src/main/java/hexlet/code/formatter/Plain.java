@@ -1,6 +1,7 @@
 package hexlet.code.formatter;
 
-import hexlet.code.DiffConst;
+import hexlet.code.constants.Keys;
+import hexlet.code.constants.Status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,21 +12,21 @@ public class Plain {
         List<String> result = new ArrayList<>();
 
         for (Map<Object, Object> map : list) {
-            var key = map.get(DiffConst.KEY);
+            var key = map.get(Keys.KEY);
 
-            switch (map.get(DiffConst.STATUS)) {
-                case DiffConst.DELETED -> result.add("Property '" + key + "' was removed");
-                case DiffConst.NEW -> result.add("Property '"
+            switch (map.get(Status.STATUS)) {
+                case Status.DELETED -> result.add("Property '" + key + "' was removed");
+                case Status.NEW -> result.add("Property '"
                                                     + key
                                                     + "' was added with value: "
-                                                    + getConvertedValue(map.get(DiffConst.VALUE_SECOND)));
-                case DiffConst.CHANGED -> result.add("Property '"
+                                                    + getConvertedValue(map.get(Keys.VALUE_SECOND)));
+                case Status.CHANGED -> result.add("Property '"
                                                         + key
                                                         + "' was updated. From "
-                                                        + getConvertedValue(map.get(DiffConst.VALUE_ONE))
+                                                        + getConvertedValue(map.get(Keys.VALUE_ONE))
                                                         + " to "
-                                                        + getConvertedValue(map.get(DiffConst.VALUE_SECOND)));
-                case DiffConst.SAME -> { }
+                                                        + getConvertedValue(map.get(Keys.VALUE_SECOND)));
+                case Status.SAME -> { }
                 default -> throw new RuntimeException("This status was not found");
             }
         }
