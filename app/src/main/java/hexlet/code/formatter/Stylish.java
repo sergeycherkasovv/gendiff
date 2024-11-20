@@ -1,7 +1,6 @@
 package hexlet.code.formatter;
 
 import hexlet.code.DiffConst;
-import hexlet.code.FileDifferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.Map;
 
 
 public class Stylish {
-    private static final Integer COUNT_EMPTY_LINE = 2;
 
     public static String getStylish(List<Map<String, Object>> list) throws RuntimeException {
         List<String> result = new ArrayList<>();
