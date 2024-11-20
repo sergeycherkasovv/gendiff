@@ -1,6 +1,7 @@
 package hexlet.code.formatter;
 
-import hexlet.code.DiffConst;
+import hexlet.code.constants.Keys;
+import hexlet.code.constants.Status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +15,17 @@ public class Stylish {
 
         result.add("{");
         for (Map<Object, Object> map: list) {
-            var key = map.get(DiffConst.KEY);
+            var key = map.get(Keys.KEY);
 
-            switch (map.get(DiffConst.STATUS)) {
-                case DiffConst.DELETED -> result.add(String.format("  - %s: %s", key, map.get(DiffConst.VALUE_ONE)));
-                case DiffConst.NEW -> result.add(String.format("  + %s: %s", key, map.get(DiffConst.VALUE_SECOND)));
-                case DiffConst.SAME -> result.add(String.format("    %s: %s", key, map.get(DiffConst.VALUE_SECOND)));
-                case DiffConst.CHANGED -> {
-                    result.add(String.format("  - %s: %s", key, map.get(DiffConst.VALUE_ONE)));
-                    result.add(String.format("  + %s: %s", key, map.get(DiffConst.VALUE_SECOND)));
+            switch (map.get(Status.STATUS)) {
+                case Status.DELETED -> result.add(String.format("  - %s: %s", key, map.get(Keys.VALUE_ONE)));
+                case Status.NEW -> result.add(String.format("  + %s: %s", key, map.get(Keys.VALUE_SECOND)));
+                case Status.SAME -> result.add(String.format("    %s: %s", key, map.get(Keys.VALUE_SECOND)));
+                case Status.CHANGED -> {
+                    result.add(String.format("  - %s: %s", key, map.get(Keys.VALUE_ONE)));
+                    result.add(String.format("  + %s: %s", key, map.get(Keys.VALUE_SECOND)));
                 }
-                default -> throw new RuntimeException("This " + map.get(DiffConst.STATUS) + " was not found");
+                default -> throw new RuntimeException("This " + map.get(Status.STATUS) + " was not found");
             }
         }
         result.add("}");
