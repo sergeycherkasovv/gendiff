@@ -14,20 +14,17 @@ public class Stylish {
 
         result.add("{");
         for (Map<Object, Object> map: list) {
-            var status = map.get(DiffConst.STATUS);
             var key = map.get(DiffConst.KEY);
-            var value1 = map.get(DiffConst.VALUE_ONE);
-            var value2 = map.get(DiffConst.VALUE_SECOND);
 
-            switch (status) {
-                case DiffConst.DELETED -> result.add(String.format("  - %s: %s", key, value1));
-                case DiffConst.NEW -> result.add(String.format("  + %s: %s", key, value2));
-                case DiffConst.SAME -> result.add(String.format("    %s: %s", key, value2));
+            switch (map.get(DiffConst.STATUS)) {
+                case DiffConst.DELETED -> result.add(String.format("  - %s: %s", key, map.get(DiffConst.VALUE_ONE)));
+                case DiffConst.NEW -> result.add(String.format("  + %s: %s", key, map.get(DiffConst.VALUE_SECOND)));
+                case DiffConst.SAME -> result.add(String.format("    %s: %s", key, map.get(DiffConst.VALUE_SECOND)));
                 case DiffConst.CHANGED -> {
-                    result.add(String.format("  - %s: %s", key, value1));
-                    result.add(String.format("  + %s: %s", key, value2));
+                    result.add(String.format("  - %s: %s", key, map.get(DiffConst.VALUE_ONE)));
+                    result.add(String.format("  + %s: %s", key, map.get(DiffConst.VALUE_SECOND)));
                 }
-                default -> throw new RuntimeException("This status was not found");
+                default -> throw new RuntimeException("This " + map.get(DiffConst.STATUS) + " was not found");
             }
         }
         result.add("}");
