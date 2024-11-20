@@ -1,5 +1,8 @@
 package hexlet.code;
 
+import hexlet.code.constants.Keys;
+import hexlet.code.constants.Status;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,22 +24,22 @@ public class FileDifferences {
                 .map(key -> {
                     Map<Object, Object> map = new HashMap<>();
                     if (Objects.equals(fileParse1.get(key), fileParse2.get(key))) {
-                        map.put(DiffConst.STATUS, DiffConst.SAME);
-                        map.put(DiffConst.KEY, key);
-                        map.put(DiffConst.VALUE_SECOND, fileParse2.get(key));
+                        map.put(Status.STATUS, Status.SAME);
+                        map.put(Keys.KEY, key);
+                        map.put(Keys.VALUE_SECOND, fileParse2.get(key));
                     } else if ((fileParse1.containsKey(key) && fileParse2.containsKey(key))) {
-                        map.put(DiffConst.STATUS, DiffConst.CHANGED);
-                        map.put(DiffConst.KEY, key);
-                        map.put(DiffConst.VALUE_ONE, fileParse1.get(key));
-                        map.put(DiffConst.VALUE_SECOND, fileParse2.get(key));
+                        map.put(Status.STATUS, Status.CHANGED);
+                        map.put(Keys.KEY, key);
+                        map.put(Keys.VALUE_ONE, fileParse1.get(key));
+                        map.put(Keys.VALUE_SECOND, fileParse2.get(key));
                     } else if (fileParse1.containsKey(key) && !fileParse2.containsKey(key)) {
-                        map.put(DiffConst.STATUS, DiffConst.DELETED);
-                        map.put(DiffConst.KEY, key);
-                        map.put(DiffConst.VALUE_ONE, fileParse1.get(key));
+                        map.put(Status.STATUS, Status.DELETED);
+                        map.put(Keys.KEY, key);
+                        map.put(Keys.VALUE_ONE, fileParse1.get(key));
                     } else if (fileParse2.containsKey(key) && !fileParse1.containsKey(key)) {
-                        map.put(DiffConst.STATUS, DiffConst.NEW);
-                        map.put(DiffConst.KEY, key);
-                        map.put(DiffConst.VALUE_SECOND, fileParse2.get(key));
+                        map.put(Status.STATUS, Status.NEW);
+                        map.put(Keys.KEY, key);
+                        map.put(Keys.VALUE_SECOND, fileParse2.get(key));
                     }
                     return map;
                 })
