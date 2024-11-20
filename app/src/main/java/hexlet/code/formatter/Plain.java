@@ -1,7 +1,6 @@
 package hexlet.code.formatter;
 
 import hexlet.code.DiffConst;
-import hexlet.code.FileDifferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,7 @@ public class Plain {
                 default -> throw new RuntimeException("This status was not found");
             }
         }
+
 
         return String.join("\n", result);
     }
