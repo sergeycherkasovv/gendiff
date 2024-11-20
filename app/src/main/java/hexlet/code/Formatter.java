@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    public static String getFormatter(List<Map<String, Object>> differMap, String format) throws Exception {
+    public static String getFormatter(List<Map<Object, Object>> differMap, String format) throws Exception {
         return switch (format) {
             case "stylish" -> Stylish.getStylish(differMap);
             case "plain" -> Plain.getPlain(differMap);
