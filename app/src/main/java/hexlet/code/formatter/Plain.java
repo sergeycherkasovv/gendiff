@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Plain {
-    public static String getPlain(List<Map<String, Object>> list) throws RuntimeException {
+    public static String getPlain(List<Map<Object, Object>> list) throws RuntimeException {
         List<String> result = new ArrayList<>();
 
-        for (Map<String, Object> map : list) {
-            var status = map.get(DiffConst.STATUS.toString());
-            var key = map.get(DiffConst.KEY.toString());
-            var value1 = map.get(DiffConst.VALUE_ONE.toString());
-            var value2 = map.get(DiffConst.VALUE_SECOND.toString());
+        for (Map<Object, Object> map : list) {
+            var status = map.get(DiffConst.STATUS);
+            var key = map.get(DiffConst.KEY);
+            var value1 = map.get(DiffConst.VALUE_ONE);
+            var value2 = map.get(DiffConst.VALUE_SECOND);
 
             switch (status) {
                 case DiffConst.DELETED -> result.add("Property '" + key + "' was removed");
@@ -33,7 +33,6 @@ public class Plain {
                 default -> throw new RuntimeException("This status was not found");
             }
         }
-
 
         return String.join("\n", result);
     }
