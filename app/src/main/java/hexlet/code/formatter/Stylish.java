@@ -1,6 +1,6 @@
 package hexlet.code.formatter;
 
-import hexlet.code.DifferFilter;
+import hexlet.code.FileDifferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,21 +16,25 @@ public class Stylish {
 
         result.add("{");
         for (Map<String, Object> map: list) {
-            var status = map.get(DifferFilter.STATUS).toString();
-            var plus = emptyString + "+ " + map.get(DifferFilter.KEY) + ": " + map.get(DifferFilter.VALUE_SECOND);
-            var minus = emptyString + "- " + map.get(DifferFilter.KEY) + ": " + map.get(DifferFilter.VALUE_ONE);
+            var status = map.get(FileDifferences.STATUS).toString();
+            var plus = emptyString + "+ " + map.get(FileDifferences.KEY) + ": " + map.get(FileDifferences.VALUE_SECOND);
+            var minus = emptyString + "- " + map.get(FileDifferences.KEY) + ": " + map.get(FileDifferences.VALUE_ONE);
             var same = emptyString.repeat(COUNT_EMPTY_LINE)
-                    + map.get(DifferFilter.KEY)
+                    + map.get(FileDifferences.KEY)
                     + ": "
-                    + map.get(DifferFilter.VALUE_SECOND);
+                    + map.get(FileDifferences.VALUE_SECOND);
+
+            var key = map.get(FileDifferences.KEY);
+            var value1 = map.get(FileDifferences.VALUE_ONE);
+            var value2 = map.get(FileDifferences.VALUE_SECOND);
 
             switch (status) {
-                case DifferFilter.DELETED -> result.add(minus);
-                case DifferFilter.NEW -> result.add(plus);
-                case DifferFilter.SAME -> result.add(same);
-                case DifferFilter.CHANGED -> {
-                    result.add(minus);
-                    result.add(plus);
+                case FileDifferences.DELETED -> result.add(String.format("  - %s: %s", key, value1));
+                case FileDifferences.NEW -> result.add(String.format("  + %s: %s", key, value2));
+                case FileDifferences.SAME -> result.add(String.format("    %s: %s", key, value2));
+                case FileDifferences.CHANGED -> {
+                    result.add(String.format("  - %s: %s", key, value1));
+                    result.add(String.format("  + %s: %s", key, value2));
                 }
                 default -> throw new RuntimeException("This status was not found");
             }
