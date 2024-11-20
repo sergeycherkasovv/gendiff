@@ -1,5 +1,6 @@
 package hexlet.code.formatter;
 
+import hexlet.code.DiffConst;
 import hexlet.code.FileDifferences;
 
 import java.util.ArrayList;
@@ -11,23 +12,25 @@ public class Plain {
         List<String> result = new ArrayList<>();
 
         for (Map<String, Object> map : list) {
-            var status = map.get(FileDifferences.STATUS).toString();
-            var key = map.get(FileDifferences.KEY);
+            var status = map.get(DiffConst.STATUS.toString());
+            var key = map.get(DiffConst.KEY.toString());
+            var value1 = map.get(DiffConst.VALUE_ONE.toString());
+            var value2 = map.get(DiffConst.VALUE_SECOND.toString());
 
             switch (status) {
-                case FileDifferences.DELETED -> result.add("Property '" + key + "' was removed");
-                case FileDifferences.NEW -> result.add("Property '"
+                case DiffConst.DELETED -> result.add("Property '" + key + "' was removed");
+                case DiffConst.NEW -> result.add("Property '"
                                                     + key
                                                     + "' was added with value: "
-                                                    + getConvertedValue(map.get(FileDifferences.VALUE_SECOND)));
-                case FileDifferences.CHANGED -> result.add("Property '"
+                                                    + getConvertedValue(value2));
+                case DiffConst.CHANGED -> result.add("Property '"
                                                         + key
                                                         + "' was updated."
                                                         + " From "
-                                                        + getConvertedValue(map.get(FileDifferences.VALUE_ONE))
+                                                        + getConvertedValue(value1)
                                                         + " to "
-                                                        + getConvertedValue(map.get(FileDifferences.VALUE_SECOND)));
-                case FileDifferences.SAME -> { }
+                                                        + getConvertedValue(value2));
+                case DiffConst.SAME -> { }
                 default -> throw new RuntimeException("This status was not found");
             }
         }
