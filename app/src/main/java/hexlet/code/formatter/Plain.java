@@ -23,8 +23,10 @@ public class Plain {
                 case FileDifferences.CHANGED -> result.add("Property '"
                                                         + key
                                                         + "' was updated."
-                                                        + " From " + getConvertedValue(map.get(FileDifferences.VALUE_ONE))
-                                                        + " to " + getConvertedValue(map.get(FileDifferences.VALUE_SECOND)));
+                                                        + " From "
+                                                        + getConvertedValue(map.get(FileDifferences.VALUE_ONE))
+                                                        + " to "
+                                                        + getConvertedValue(map.get(FileDifferences.VALUE_SECOND)));
                 case FileDifferences.SAME -> { }
                 default -> throw new RuntimeException("This status was not found");
             }
