@@ -11,24 +11,20 @@ public class Plain {
         List<String> result = new ArrayList<>();
 
         for (Map<Object, Object> map : list) {
-            var status = map.get(DiffConst.STATUS);
             var key = map.get(DiffConst.KEY);
-            var value1 = map.get(DiffConst.VALUE_ONE);
-            var value2 = map.get(DiffConst.VALUE_SECOND);
 
-            switch (status) {
+            switch (map.get(DiffConst.STATUS)) {
                 case DiffConst.DELETED -> result.add("Property '" + key + "' was removed");
                 case DiffConst.NEW -> result.add("Property '"
                                                     + key
                                                     + "' was added with value: "
-                                                    + getConvertedValue(value2));
+                                                    + getConvertedValue(map.get(DiffConst.VALUE_SECOND)));
                 case DiffConst.CHANGED -> result.add("Property '"
                                                         + key
-                                                        + "' was updated."
-                                                        + " From "
-                                                        + getConvertedValue(value1)
+                                                        + "' was updated. From "
+                                                        + getConvertedValue(map.get(DiffConst.VALUE_ONE))
                                                         + " to "
-                                                        + getConvertedValue(value2));
+                                                        + getConvertedValue(map.get(DiffConst.VALUE_SECOND)));
                 case DiffConst.SAME -> { }
                 default -> throw new RuntimeException("This status was not found");
             }
