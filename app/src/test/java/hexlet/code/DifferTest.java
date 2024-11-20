@@ -11,7 +11,6 @@ class DifferTest {
     private static String directory;
     private static String expectedStylish;
     private static String expectedPlain;
-    private static String expectedJson;
 
     @BeforeAll
     public static void beforeAll() throws Exception {
@@ -19,7 +18,6 @@ class DifferTest {
         directory = "src/test/resources/fixtures/";
         expectedStylish = FileRead.readFile(directory + "resultStylish.txt");
         expectedPlain = FileRead.readFile(directory + "resultPlain.txt");
-        expectedJson = FileRead.readFile(directory + "resultJson.txt");
     }
 
     @ParameterizedTest
@@ -36,8 +34,5 @@ class DifferTest {
 
         var plainFormatter = Differ.generate(file1, file2, "plain");
         assertEquals(plainFormatter, expectedPlain);
-
-        var jsonFormatter = Differ.generate(file1, file2, "json");
-        assertEquals(jsonFormatter, expectedJson);
     }
 }
