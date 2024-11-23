@@ -10,14 +10,14 @@ import java.util.Map;
 
 public class Stylish {
 
-    public static String getStylish(List<Map<Object, Object>> list) throws RuntimeException {
+    public static String getStylish(List<Map<Keys, Object>> list) throws RuntimeException {
         List<String> result = new ArrayList<>();
 
         result.add("{");
-        for (Map<Object, Object> map: list) {
+        for (Map<Keys, Object> map: list) {
             var key = map.get(Keys.KEY);
 
-            switch (map.get(Status.STATUS)) {
+            switch (map.get(Keys.STATUS)) {
                 case Status.DELETED -> result.add(String.format("  - %s: %s", key, map.get(Keys.VALUE_ONE)));
                 case Status.NEW -> result.add(String.format("  + %s: %s", key, map.get(Keys.VALUE_SECOND)));
                 case Status.SAME -> result.add(String.format("    %s: %s", key, map.get(Keys.VALUE_SECOND)));
@@ -25,7 +25,7 @@ public class Stylish {
                     result.add(String.format("  - %s: %s", key, map.get(Keys.VALUE_ONE)));
                     result.add(String.format("  + %s: %s", key, map.get(Keys.VALUE_SECOND)));
                 }
-                default -> throw new RuntimeException("This " + map.get(Status.STATUS) + " was not found");
+                default -> throw new RuntimeException("This " + map.get(Keys.STATUS) + " was not found");
             }
         }
         result.add("}");
