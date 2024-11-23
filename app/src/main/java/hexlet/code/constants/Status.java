@@ -4,5 +4,5 @@ public enum Status {
     CHANGED,
     NEW,
     SAME,
-    DELETED;
+    DELETED
 }
