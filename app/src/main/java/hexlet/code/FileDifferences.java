@@ -11,8 +11,8 @@ import java.util.Objects;
 
 public class FileDifferences {
 
-    public static List<Map<Object, Object>> getDifferences(Map<String, Object> fileParse1,
-                                                           Map<String, Object> fileParse2) {
+    public static List<Map<Object, Object>> MapComparator(Map<String, Object> fileParse1,
+                                                          Map<String, Object> fileParse2) {
 
         List<String> listKey = new ArrayList<>();
         listKey.addAll(fileParse1.keySet());
