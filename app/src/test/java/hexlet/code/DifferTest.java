@@ -16,8 +16,8 @@ class DifferTest {
     public static void beforeAll() throws Exception {
 
         directory = "src/test/resources/fixtures/";
-        expectedStylish = FileRead.readFile(directory + "resultStylish.txt");
-        expectedPlain = FileRead.readFile(directory + "resultPlain.txt");
+        expectedStylish = FileReader.readFile(directory + "resultStylish.txt");
+        expectedPlain = FileReader.readFile(directory + "resultPlain.txt");
     }
 
     @ParameterizedTest

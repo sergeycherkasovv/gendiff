@@ -21,7 +21,7 @@ public class Differ {
     }
 
     public static Map<String, Object> getPreparedFile(String file) throws Exception {
-        var read = FileRead.readFile(file);
+        var read = FileReader.readFile(file);
         var fileFormat = file.substring(file.lastIndexOf("."));
         return Parser.getParser(read, fileFormat);
     }

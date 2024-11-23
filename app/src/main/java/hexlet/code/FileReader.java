@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileRead {
+public class FileReader {
     private static Path normalizeFilePath(String fileName) {
         return Paths.get(fileName)
                 .toAbsolutePath().normalize();
