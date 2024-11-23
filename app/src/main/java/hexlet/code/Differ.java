@@ -8,8 +8,8 @@ public class Differ {
                                   String filepath2,
                                   String formatName) throws Exception {
 
-        var fileParse1 = getPreparedFile(filepath1);
-        var fileParse2 = getPreparedFile(filepath2);
+        var fileParse1 = getFileContent(filepath1);
+        var fileParse2 = getFileContent(filepath2);
 
         var result = MapComparator.getDifferences(fileParse1, fileParse2);
         return Formatter.getFormatter(result, formatName);
@@ -20,7 +20,7 @@ public class Differ {
         return generate(filepath1, filepath2, "stylish");
     }
 
-    public static Map<String, Object> getPreparedFile(String file) throws Exception {
+    public static Map<String, Object> getFileContent(String file) throws Exception {
         var read = FileReader.readFile(file);
         var fileFormat = file.substring(file.lastIndexOf("."));
         return Parser.getParser(read, fileFormat);
