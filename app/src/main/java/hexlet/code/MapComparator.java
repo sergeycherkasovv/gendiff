@@ -11,8 +11,8 @@ import java.util.TreeMap;
 
 public class MapComparator {
 
-    public static List<Map<Keys, Object>> getMapDifferences(Map<String, Object> fileParse1,
-                                                              Map<String, Object> fileParse2) {
+    public static List<Map<Keys, Object>> getDifferences(Map<String, Object> fileParse1,
+                                                         Map<String, Object> fileParse2) {
 
         List<String> listKey = new ArrayList<>();
         listKey.addAll(fileParse1.keySet());

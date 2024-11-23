@@ -11,7 +11,7 @@ public class Differ {
         var fileParse1 = getFileContent(filepath1);
         var fileParse2 = getFileContent(filepath2);
 
-        var result = MapComparator.getMapDifferences(fileParse1, fileParse2);
+        var result = MapComparator.getDifferences(fileParse1, fileParse2);
         return Formatter.getFormatter(result, formatName);
     }
 
