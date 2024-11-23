@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Plain {
-    public static String getPlain(List<Map<Object, Object>> list) throws RuntimeException {
+    public static String getPlain(List<Map<Keys, Object>> list) throws RuntimeException {
         List<String> result = new ArrayList<>();
 
-        for (Map<Object, Object> map : list) {
+        for (Map<Keys, Object> map : list) {
             var key = map.get(Keys.KEY);
 
-            switch (map.get(Status.STATUS)) {
+            switch (map.get(Keys.STATUS)) {
                 case Status.DELETED -> result.add("Property '" + key + "' was removed");
                 case Status.NEW -> result.add("Property '"
                                                     + key
@@ -27,7 +27,7 @@ public class Plain {
                                                         + " to "
                                                         + getConvertedValue(map.get(Keys.VALUE_SECOND)));
                 case Status.SAME -> { }
-                default -> throw new RuntimeException("This " + map.get(Status.STATUS) + " was not found");
+                default -> throw new RuntimeException("This " + map.get(Keys.STATUS) + " was not found");
             }
         }
 
