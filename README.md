@@ -6,13 +6,32 @@
 <a href="https://codeclimate.com/github/sergeycherkasovv/java-project-71/test_coverage"><img src="https://api.codeclimate.com/v1/badges/9cfade9e6fd2faaff27b/test_coverage" /></a>
 <a href="https://codeclimate.com/github/sergeycherkasovv/java-project-71/maintainability"><img src="https://api.codeclimate.com/v1/badges/9cfade9e6fd2faaff27b/maintainability" /></a>
 
-### Gendiff 
-The program determines the difference between two data structures. This is a common task, with many online services available, such as jsondiff.com. Similar mechanisms are used in test outputs and for automatically tracking changes in configuration files.
+**Gendiff** — это консольная утилита для определения различий между двумя файлами конфигурации. Поддерживает форматы JSON и YAML, а также предоставляет различные форматы вывода, включая стильный, плоский и JSON.
 
-Utility features:
+### Использование
+Сравните два файла и выведите разницу
 
-- Supports various input formats: YAML and JSON
-- Generates reports in plain text, stylish, and JSON formats
+**Опции:**
+- `-f, --format [type]`  — формат вывода (по умолчанию: `stylish`)
+```bash
+./app file1.yml file2.json
+```
+
+**Доступные форматы вывода:**
+- `stylish` — древовидный формат
+```bash
+./app filepath1.json filepath2.json
+ИЛИ 
+./app --format stylish file1.yml file2.json
+```
+- `plain` — плоский текст
+```bash
+./app --format plain file1.yml file2.json
+```
+- `json` — JSON
+```bash
+./app --format json file1.yml file2.json
+```
 
 ### Comparison of flat files (JSON)
 [![asciicast](https://asciinema.org/a/yMr990f3pQIlCHG5mN63C2Clm.svg)](https://asciinema.org/a/yMr990f3pQIlCHG5mN63C2Clm)
