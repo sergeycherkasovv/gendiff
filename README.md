@@ -18,29 +18,17 @@
 ```
 
 **Доступные форматы вывода:**
-- `stylish` — древовидный формат
+- [stylish](https://asciinema.org/a/yMr990f3pQIlCHG5mN63C2Clm) или [stylish](https://asciinema.org/a/OVH4IUv5dgo1Tb87pp5YLod8K) — древовидный формат
 ```bash
 ./app filepath1.json filepath2.json
 ИЛИ 
 ./app --format stylish file1.yml file2.json
 ```
-- `plain` — плоский текст
+- [plain](https://asciinema.org/a/bVNvM4CfASayBmI4lRIL8J3XT) — плоский текст
 ```bash
 ./app --format plain file1.yml file2.json
 ```
-- `json` — JSON
+- [json](https://asciinema.org/a/QM1sFlRyoC6fS6lvKzLt5VVTn) — JSON
 ```bash
 ./app --format json file1.yml file2.json
 ```
-
-### Comparison of flat files (JSON)
-[![asciicast](https://asciinema.org/a/yMr990f3pQIlCHG5mN63C2Clm.svg)](https://asciinema.org/a/yMr990f3pQIlCHG5mN63C2Clm)
-
-### Formatter "stylish"
-[![asciicast](https://asciinema.org/a/OVH4IUv5dgo1Tb87pp5YLod8K.svg)](https://asciinema.org/a/OVH4IUv5dgo1Tb87pp5YLod8K)
-
-### Formatter "plain"
-[![asciicast](https://asciinema.org/a/bVNvM4CfASayBmI4lRIL8J3XT.svg)](https://asciinema.org/a/bVNvM4CfASayBmI4lRIL8J3XT)
-
-### Formatter "json"
-[![asciicast](https://asciinema.org/a/QM1sFlRyoC6fS6lvKzLt5VVTn.svg)](https://asciinema.org/a/QM1sFlRyoC6fS6lvKzLt5VVTn)
