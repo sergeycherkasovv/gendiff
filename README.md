@@ -34,3 +34,9 @@
 ```bash
 ./app --format json file1.yml file2.json
 ```
+
+## 📮 Автор
+Разработано в рамках обучения на Hexlet.
+Автор: [sergeycherkasovv](https://github.com/sergeycherkasovv)
+
+Почта: iamcherkasov.job@gmail.com
